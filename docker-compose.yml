@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  poker-community-front:
+    image: poker-community
+    ports:
+      - "85:3000"
+    container_name: poker-community-front
+
+  poker-community-nginx:
+    image: poker-community-nginx
+    ports:
+      - "84:80"
+    container_name: poker-community-nginx
+    environment:
+      PROXY_PASS_TO_FRONT_SERVER: http://poker-community-front:3000
