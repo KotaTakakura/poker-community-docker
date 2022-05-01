@@ -14,3 +14,28 @@ services:
     container_name: poker-community-nginx
     environment:
       PROXY_PASS_TO_FRONT_SERVER: http://poker-community-front:3000
+
+  poker-community-mysql:
+    image: poker-community-mysql
+    ports:
+      - "3306:3306"
+    container_name: poker-community-mysql
+
+  poker-community-api:
+    image: poker-community-api
+    ports:
+      - "2000:2000"
+    container_name: poker-community-api
+
+  poker-community-nginx-api:
+    image: poker-community-nginx-api
+    ports:
+      - "86:80"
+    container_name: poker-community-nginx-api
+    environment:
+      PROXY_PASS_TO_API_SERVER: http://poker-community-api:2000
+
+networks:
+  default:
+    external:
+      name: poker-community

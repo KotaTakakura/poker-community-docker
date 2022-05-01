@@ -1,0 +1,8 @@
+FROM mysql:8.0-oracle
+
+ENV MYSQL_ROOT_PASSWORD rootpass
+ENV MYSQL_DATABASE poker-community
+ENV MYSQL_USER testuser
+ENV MYSQL_PASSWORD testpass
+
+COPY ./mysql/config/my.conf /etc/mysql/conf.d/my.cnf
