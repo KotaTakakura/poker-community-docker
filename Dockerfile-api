@@ -13,4 +13,5 @@ RUN go build -v -o /usr/local/bin/app ./...
 
 EXPOSE 2000
 
-CMD ["app"]
+#CMD ["app"]
+CMD ["go","run","main.go"]

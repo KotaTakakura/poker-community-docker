@@ -8,12 +8,12 @@ WORKDIR /usr/src/app
 # 可能であれば (npm@5+)
 COPY package*.json ./
 
-#RUN npm install
+RUN npm install
 # 本番用にコードを作成している場合
-RUN npm install --only=production
+#RUN npm install --only=production
 
 # アプリケーションのソースをバンドルする
 COPY . .
 
 EXPOSE 3000
-CMD [ "npm", "run", "start"]
+CMD [ "npm", "run", "dev"]

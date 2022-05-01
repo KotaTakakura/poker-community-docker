@@ -1,11 +1,18 @@
 version: '2'
 
+volumes:
+  poker-community-volume:
 services:
   poker-community-front:
     image: poker-community
     ports:
       - "85:3000"
     container_name: poker-community-front
+    volumes:
+      - ../poker-community:/usr/src/app
+      - poker-community-volume:/usr/src/app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true
 
   poker-community-nginx:
     image: poker-community-nginx
@@ -26,6 +33,10 @@ services:
     ports:
       - "2000:2000"
     container_name: poker-community-api
+    volumes:
+      - ../api:/usr/src/app
+    environment:
+      FRONT_ORIGIN: http://localhost:85
 
   poker-community-nginx-api:
     image: poker-community-nginx-api
